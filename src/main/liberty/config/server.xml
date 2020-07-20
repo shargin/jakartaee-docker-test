@@ -11,6 +11,7 @@
     <httpEndpoint id="defaultHttpEndpoint"
                   httpPort="8080"
                   httpsPort="8443" />
+    <webContainer disableXPoweredBy="true"/>
 
     <!-- Automatically expand WAR files and EAR files -->
     <applicationManager autoExpand="true"/>
