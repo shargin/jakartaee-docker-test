@@ -3,9 +3,8 @@
 
     <featureManager>
         <feature>webProfile-8.0</feature>
-<!--        <feature>microProfile-3.0</feature>-->
-<!--        <feature>mpHealth-2.0</feature>-->
     </featureManager>
+
     <httpDispatcher enableWelcomePage="false" />
 
     <httpEndpoint id="defaultHttpEndpoint"
@@ -18,5 +17,24 @@
 
     <!-- Default SSL configuration enables trust for default certificates from the Java runtime -->
     <ssl id="defaultSSLConfig" trustDefaultCerts="true" />
+
+    <!--
+        mix from
+            https://rieckpil.de/jakarta-ee-and-microprofile-applications-with-react-and-postgresql/
+            https://blog.sebastian-daschner.com/entries/openliberty-with-postgres
+    -->
+    <dataSource id="DefaultDataSource" jndiName="jdbc/postgresql">
+        <jdbcDriver libraryRef="postgresql-driver" />
+
+        <properties serverName="${POSTGRESQL_HOST}"
+                    portNumber="${POSTGRESQL_PORT}"
+                    databaseName="${POSTGRESQL_DB}"
+                    user="${POSTGRESQL_USER}"
+                    password="${POSTGRESQL_PASSWORD}"/>
+    </dataSource>
+
+    <library id="postgresql-driver">
+        <fileset dir="${server.config.dir}/" includes="postgresql-42.2.14.jar"/>
+    </library>
 
 </server>
